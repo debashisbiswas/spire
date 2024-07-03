@@ -18,6 +18,7 @@ defmodule SpireWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/journal", JournalLive, :index
   end
 
   # Other scopes may use custom stacks.

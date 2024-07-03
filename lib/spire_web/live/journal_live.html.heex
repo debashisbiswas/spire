@@ -1,0 +1,10 @@
+<form class="flex items-center flex-col" phx-submit="save">
+  <input class="bg-slate-200 rounded block p-2 w-full mb-4" name="content" />
+</form>
+
+<ul>
+  <li :for={entry <- @entries}>
+    <span class="text-gray-400"><%= entry.time %></span>
+    <%= entry.content %>
+  </li>
+</ul>
