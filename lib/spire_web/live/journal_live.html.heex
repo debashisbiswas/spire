@@ -1,10 +1,12 @@
 <form class="flex items-center flex-col" phx-submit="save">
-  <input class="bg-slate-200 rounded block p-2 w-full mb-4" name="content" />
+  <textarea class="bg-slate-200 rounded block p-2 w-full mb-4 rounded-lg" name="content" />
+
+  <button type="submit" class="bg-zinc-700 text-white px-4 py-2 rounded-lg">Submit</button>
 </form>
 
-<ul>
-  <li :for={entry <- @entries}>
-    <span class="text-gray-400"><%= entry.time %></span>
-    <%= entry.content %>
+<ul class="divide-y-4 divide-dotted">
+  <li :for={entry <- @entries} class="py-4">
+    <span class="text-gray-500 leading-loose"><%= entry.time %></span>
+    <p class="whitespace-pre-line"><%= entry.content %></p>
   </li>
 </ul>
