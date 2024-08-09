@@ -5,8 +5,8 @@
 </form>
 
 <ul class="divide-y-4 divide-dotted">
-  <li :for={entry <- @entries} class="py-4">
-    <span class="text-gray-500 leading-loose"><%= entry.time %></span>
-    <p class="whitespace-pre-line"><%= entry.content %></p>
+  <li :for={note <- @notes} class="py-4">
+    <span class="text-gray-500 leading-loose"><%= note.inserted_at %></span>
+    <p class="whitespace-pre-line"><%= note.content %></p>
   </li>
 </ul>
