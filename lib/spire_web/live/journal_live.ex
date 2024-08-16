@@ -11,7 +11,7 @@ defmodule SpireWeb.JournalLive do
   end
 
   def handle_event("save", %{"content" => content}, socket) do
-    {:ok, new_note} = Notes.create_note(%{content: content})
+    {:ok, new_note} = Notes.create_note(%{content: content, tags: []})
 
     socket = socket |> update(:notes, &[new_note | &1])
     {:noreply, socket}
