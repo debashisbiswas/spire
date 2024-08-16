@@ -13,6 +13,7 @@ defmodule Spire.Notes.Note do
   def changeset(note, attrs) do
     note
     |> cast(attrs, [:content])
+    |> cast_assoc(:tags)
     |> validate_required([:content])
   end
 end
