@@ -4,6 +4,7 @@ defmodule Spire.Notes.Note do
 
   schema "notes" do
     field :content, :string
+    many_to_many :tags, Spire.Notes.Tag, join_through: "notes_tags"
 
     timestamps(type: :utc_datetime)
   end
