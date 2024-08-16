@@ -9,7 +9,7 @@
     <span class="text-gray-500"><%= note.inserted_at |> Calendar.strftime("%c") %></span>
     <p class="whitespace-pre-line mb-2"><%= note.content %></p>
 
-    <div class="flex">
+    <div :if={note.tags != []} class="flex">
       <p :for={tag <- note.tags} class="px-2 py-1 bg-teal-100 rounded-lg text-xs">
         <%= tag.name %>
       </p>
