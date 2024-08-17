@@ -7,8 +7,7 @@ defmodule SpireWeb.JournalLive do
   def mount(_params, _session, socket) do
     notes = Notes.list_notes()
 
-    # TODO: stream results
-    socket = socket |> assign(:notes, notes)
+    socket = socket |> stream(:notes, notes)
     {:ok, socket}
   end
 
@@ -25,7 +24,7 @@ defmodule SpireWeb.JournalLive do
         tags: tags
       })
 
-    socket = socket |> update(:notes, &[new_note | &1])
+    socket = socket |> stream_insert(:notes, new_note, at: 0)
 
     {:noreply, socket}
   end
