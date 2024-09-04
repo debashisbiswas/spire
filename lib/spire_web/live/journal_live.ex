@@ -14,7 +14,8 @@ defmodule SpireWeb.JournalLive do
   def handle_event("save", %{"content" => content}, socket) do
     tags =
       content
-      |> parse_tags_from_message()
+      |> Regex.scan(@tag_regex, content, capture: :all_but_first)
+      |> List.flatten()
       |> Enum.map(&%{name: &1})
 
     # TODO: tags should re-use the same tag when they have the same name
@@ -27,10 +28,5 @@ defmodule SpireWeb.JournalLive do
     socket = socket |> stream_insert(:notes, new_note, at: 0)
 
     {:noreply, socket}
-  end
-
-  defp parse_tags_from_message(content) do
-    Regex.scan(@tag_regex, content, capture: :all_but_first)
-    |> List.flatten()
   end
 end

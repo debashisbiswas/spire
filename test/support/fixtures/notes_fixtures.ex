@@ -11,7 +11,8 @@ defmodule Spire.NotesFixtures do
     {:ok, note} =
       attrs
       |> Enum.into(%{
-        content: "some content"
+        content: "some content",
+        tags: []
       })
       |> Spire.Notes.create_note()
 

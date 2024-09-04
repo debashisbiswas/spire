@@ -35,7 +35,7 @@ defmodule Spire.Notes do
       ** (Ecto.NoResultsError)
 
   """
-  def get_note!(id), do: Repo.get!(Note, id)
+  def get_note!(id), do: Repo.get!(Note, id) |> Repo.preload(:tags)
 
   @doc """
   Creates a note.
