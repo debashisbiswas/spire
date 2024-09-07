@@ -19,10 +19,15 @@
 
   <ul id="entries" phx-update="stream" class="divide-y-4 divide-dotted">
     <li :for={{id, note} <- @streams.notes} id={id} class="py-4 space-y-2">
-      <span class="text-gray-500"><%= note.inserted_at |> Calendar.strftime("%c") %></span>
-      <p class="whitespace-pre-line mb-2"><%= note.content %></p>
+      <span class="text-gray-500">
+        <%= note.inserted_at |> Calendar.strftime("%c") %>
+      </span>
 
-      <div :if={note.tags != []} class="flex">
+      <p class="mb-2">
+        <%= note.content %>
+      </p>
+
+      <div :if={note.tags !=[]} class="flex">
         <p :for={tag <- note.tags} class="px-2 py-1 bg-teal-100 rounded-lg text-xs">
           <%= tag.name %>
         </p>
