@@ -1,18 +1,32 @@
-<form class="flex items-center flex-col" phx-submit="save">
-  <textarea class="bg-slate-200 rounded block p-2 w-full mb-4 rounded-lg" name="content" />
+<div class="fixed">
+  <p class="font-bold mb-4">
+    Tags
+  </p>
 
-  <button type="submit" class="bg-zinc-700 text-white px-4 py-2 rounded-lg">Submit</button>
-</form>
+  <div class="space-y-2">
+    <button :for={tag <- @tags} class="bg-teal-100 block px-2 py-1 rounded-lg text-xs">
+      <%= tag.name %>
+    </button>
+  </div>
+</div>
 
-<ul id="entries" phx-update="stream" class="divide-y-4 divide-dotted">
-  <li :for={{id, note} <- @streams.notes} id={id} class="py-4 space-y-2">
-    <span class="text-gray-500"><%= note.inserted_at |> Calendar.strftime("%c") %></span>
-    <p class="whitespace-pre-line mb-2"><%= note.content %></p>
+<main class="max-w-2xl mx-auto">
+  <form class="flex items-center flex-col" phx-submit="save">
+    <textarea class="bg-slate-200 rounded block p-2 w-full mb-4 rounded-lg" name="content" />
 
-    <div :if={note.tags != []} class="flex">
-      <p :for={tag <- note.tags} class="px-2 py-1 bg-teal-100 rounded-lg text-xs">
-        <%= tag.name %>
-      </p>
-    </div>
-  </li>
-</ul>
+    <button type="submit" class="bg-zinc-700 text-white px-4 py-2 rounded-lg">Submit</button>
+  </form>
+
+  <ul id="entries" phx-update="stream" class="divide-y-4 divide-dotted">
+    <li :for={{id, note} <- @streams.notes} id={id} class="py-4 space-y-2">
+      <span class="text-gray-500"><%= note.inserted_at |> Calendar.strftime("%c") %></span>
+      <p class="whitespace-pre-line mb-2"><%= note.content %></p>
+
+      <div :if={note.tags != []} class="flex">
+        <p :for={tag <- note.tags} class="px-2 py-1 bg-teal-100 rounded-lg text-xs">
+          <%= tag.name %>
+        </p>
+      </div>
+    </li>
+  </ul>
+</main>

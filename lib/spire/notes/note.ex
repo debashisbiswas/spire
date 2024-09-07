@@ -17,12 +17,12 @@ defmodule Spire.Notes.Note do
   def changeset(note, attrs \\ %{}) do
     note
     |> cast(attrs, [:content])
-    |> validate_required([:content])
     |> put_assoc(:tags, parse_tags(attrs))
+    |> validate_required([:content])
   end
 
   defp parse_tags(attrs) do
-    content = attrs["content"] || ""
+    content = attrs[:content] || ""
 
     tag_regex = ~r/#(\w*[0-9a-zA-Z]+\w*[0-9a-zA-Z])/
 
